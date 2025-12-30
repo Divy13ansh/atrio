@@ -16,8 +16,10 @@ def get_dashboard():
                 name=patient["name"],
                 scans=len(patient["scans"]),
                 inference_status=patient["inference_status"],
+                decision_status=patient["decision_status"],
                 report_generated=patient["report_generated"],
             )
+
         )
 
     return DashboardResponse(patients=result)

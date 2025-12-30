@@ -7,6 +7,7 @@ class DashboardPatient(BaseModel):
     name: str
     scans: int
     inference_status: str
+    decision_status: str       # NEW
     report_generated: bool
 
 
