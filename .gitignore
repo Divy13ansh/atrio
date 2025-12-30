@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 backend/alembic/
 backend/alembic.ini
+Stenosis-detection/

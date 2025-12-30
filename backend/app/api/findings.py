@@ -15,7 +15,14 @@ async def findings_summary(
     db: AsyncSession = Depends(get_db),
 ):
     stmt = (
-        select(Image.id, Finding.artery, Finding.blockage_pct, Finding.confidence)
+        select(
+            Image.id,
+            Image.file_path,
+            Finding.artery,
+            Finding.blockage_pct,
+            Finding.confidence,
+            Finding.heatmap_path,
+        )
         .join(Finding, Finding.image_id == Image.id)
         .where(Image.study_id == study_id)
     )
@@ -30,6 +37,10 @@ async def findings_summary(
                 "artery": r.artery,
                 "blockage_pct": r.blockage_pct,
                 "confidence": r.confidence,
+
+                # 👇 THIS is the key part
+                "image_path": f"/{r.file_path}",
+                "heatmap_path": f"/{r.heatmap_path}" if r.heatmap_path else None,
             }
             for r in rows
         ],

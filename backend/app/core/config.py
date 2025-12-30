@@ -1,5 +1,7 @@
-# app/core/config.py
 from pydantic_settings import BaseSettings
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[3]  # atrio/
 
 class Settings(BaseSettings):
     ENV: str = "dev"
@@ -10,7 +12,9 @@ class Settings(BaseSettings):
     REPORT_STORAGE_PATH: str = "storage/reports"
 
     model_config = {
-        "env_file": ".env"
+        "env_file": ".env",
+        "extra": "allow",   # ✅ THIS FIXES IT
     }
 
 settings = Settings()
+
