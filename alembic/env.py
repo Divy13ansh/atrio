@@ -22,7 +22,9 @@ from app.db.base import Base
 from app.models.patient import Patient
 from app.models.study import Study
 from app.models.image import Image
-
+from app.models.finding import Finding
+from app.models.decision import Decision
+from app.models.report import Report
 
 target_metadata = Base.metadata
 
